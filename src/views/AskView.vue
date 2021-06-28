@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li
-        v-for="ask in askList"
+        v-for="ask in $store.state.askList"
         :key="`ask${ask.id}`"
       >
         {{ ask.title }}
@@ -12,17 +12,9 @@
 </template>
 
 <script>
-import { fetchList } from "../api/index.js";
 export default {
-  data() {
-    return {
-      askList: [],
-    }
-  },
   created() {
-    fetchList('ask')
-      .then(response => this.askList = response.data)
-      .catch(error => console.log(error))
+    this.$store.dispatch('FETCH_LIST', 'askList')
   }
 }
 </script>

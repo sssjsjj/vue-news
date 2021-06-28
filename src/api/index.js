@@ -4,7 +4,7 @@ import axios from 'axios'
 const config = {
   baseUrl: 'https://api.hnpwa.com/v0/',
   news: 'news/1.json',
-  ask: 'ask/1.json',
+  askList: 'ask/1.json',
   jobs: 'jobs/1.json',
 }
 
@@ -14,5 +14,5 @@ function fetchList(type) {
 }
 
 export {
-  fetchList
+  fetchList,
 } 

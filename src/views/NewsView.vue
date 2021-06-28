@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li
-        v-for="news in newsList"
+        v-for="news in $store.state.news"
         :key="`news${news.id}`"
       >
         {{ news.title }}
@@ -12,21 +12,14 @@
 </template>
 
 <script>
-import { fetchList } from "../api/index.js";
+
 
 export default {
-  data() {
-    return {
-      newsList: []
-    }
-  },
   created() {
-    fetchList('news')
-    .then(response => this.newsList = response.data)
-    .catch(error => console.log(error))
+    this.$store.dispatch('FETCH_LIST', 'news')
   },
   mounted() {
-    console.log(this.newsList)
+    // console.log(this.newsList)
   }
 }
 </script>
