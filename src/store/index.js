@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { fetchList } from '../api/index.js'
+import mutations from './mutations.js'
+import actions from './actions.js'
 
 
 Vue.use(Vuex)
@@ -16,25 +17,6 @@ export const store = new Vuex.Store({
       return state.jobs
     }
   },
-  mutations: {
-    SET_LIST(state, payload) {
-      state[payload.type] = payload.data
-    }
-  },
-  actions: {
-    FETCH_LIST({ commit }, type) {
-      fetchList(type)
-        .then(response => commit(`SET_LIST`, {data: response.data, type}))
-        .catch(error => console.log(error))
-    },
-  }
-  // getters: {
-
-  // },
-  // mutations: {
-
-  // },
-  // actions: {
-
-  // },
+  mutations,
+  actions,
 })
