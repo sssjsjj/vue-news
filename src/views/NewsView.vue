@@ -1,29 +1,81 @@
 <template>
   <div>
-    <ul>
+    <ul class="list-article">
       <li
-        v-for="news in $store.state.news"
+        v-for="news in fetchedNews"
         :key="`news${news.id}`"
       >
-        {{ news.title }}
+        <span class="wrap-title">
+          <a
+            :href="news.url"
+            class="link-article"
+            target="_blank"
+            title="New Window"
+          >
+            {{ news.title }}
+            <span class="text-sub comments-count">({{ news['comments_count'] }})</span>
+          </a>
+        </span>
+        <span class="wrap-info">
+          <router-link :to="`/user/${news.user}`" class="user">
+            <i class="far fa-user"></i> {{ news.user }}
+          </router-link>
+          <span class="text-sub time-ago">{{ news['time_ago'] }}</span>
+        </span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-
-
+import { mapGetters } from 'vuex';
 export default {
-  created() {
-    this.$store.dispatch('FETCH_LIST', 'news')
+  computed: {
+    ...mapGetters(['fetchedNews'])
   },
-  mounted() {
-    // console.log(this.newsList)
-  }
+  created() {
+    this.$store.dispatch('FETCH_LIST', 'newsList')
+  },
 }
 </script>
 
 <style>
+.list-article {
 
+}
+.list-article li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  border-bottom: 1px solid #eeeaea;
+}
+.list-article li .link-article {
+  vertical-align: bottom;
+  font-size: 1.2em;
+}
+.list-article li .wrap-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+.list-article li .comments-count {
+  font-size: 0.8em;
+  color: var(--main-color);
+}
+.list-article li .time-ago {
+  margin-top: 5px;
+  font-size: 0.85em;
+  color: #999;
+  word-spacing: -0.1em;
+}
+.list-article li .user {
+  color: #666;
+}
+.list-article li a.user:hover {
+  text-decoration: underline;
+}
+.list-article li .user i{
+  font-size: 0.8em;
+}
 </style>

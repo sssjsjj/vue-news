@@ -13,11 +13,6 @@ export default {
   components: {
     AppHeader
   },
-  methods: {
-    fetchData() {
-      console.log('hello')
-    }
-  }
 }
 </script>
 

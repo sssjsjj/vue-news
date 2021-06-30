@@ -3,7 +3,7 @@ import axios from 'axios'
 //  1.HTTP Request & response와 관련된 기본 설정
 const config = {
   baseUrl: 'https://api.hnpwa.com/v0/',
-  news: 'news/1.json',
+  newsList: 'news/1.json',
   askList: 'ask/1.json',
   jobs: 'jobs/1.json',
 }
@@ -12,7 +12,11 @@ const config = {
 function fetchList(type) {
   return axios.get(config.baseUrl + config[type])
 }
+function fetchUser(userName) {
+  return axios.get(`${config.baseUrl}user/${userName}.json`)
+}
 
 export {
   fetchList,
+  fetchUser
 } 
