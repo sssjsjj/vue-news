@@ -5,7 +5,9 @@
         v-for="ask in $store.state.askList"
         :key="`ask${ask.id}`"
       >
-        {{ ask.title }}
+        <router-link :to="`/ask/${ask.id}`">
+          {{ ask.title }}
+        </router-link>
       </li>
     </ul>
   </div>

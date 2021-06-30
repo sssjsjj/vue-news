@@ -1,4 +1,4 @@
-import { fetchList, fetchUser } from '../api/index.js'
+import { fetchList, fetchUser, fetchItem } from '../api/index.js'
 
 export default {
   FETCH_LIST({ commit }, type) {
@@ -9,6 +9,11 @@ export default {
   FETCH_USER({ commit }, userName) {
     fetchUser(userName)
       .then(response => commit(`SET_LIST`, {data: response.data, type: 'user'}))
+      .catch(error => console.log(error))
+  },
+  FETCH_ITEM({ commit }, id) {
+    fetchItem(id)
+      .then(response => commit(`SET_LIST`, {data: response.data, type: 'item'}))
       .catch(error => console.log(error))
   }
 }

@@ -15,8 +15,12 @@ function fetchList(type) {
 function fetchUser(userName) {
   return axios.get(`${config.baseUrl}user/${userName}.json`)
 }
+function fetchItem(id) {
+  return axios.get(`${config.baseUrl}item/${id}.json`)
+}
 
 export {
   fetchList,
-  fetchUser
+  fetchUser,
+  fetchItem
 } 
