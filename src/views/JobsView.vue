@@ -1,20 +1,19 @@
 <template>
-  <div>
-    <ul>
-      <li
-        v-for="job in fetchedJobs"
-        :key="`news${job.id}`"
-      >
-        {{ job.title }}
-      </li>
-    </ul>
-  </div>
+  <board-list 
+    :data="fetchedJobs"
+    :link-key="'url'"
+    :link-target="'_blank'"
+  />
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import BoardList from '../components/BoardList.vue';
 
 export default {
+  components: {
+    BoardList
+  },
   computed: {
     ...mapGetters(['fetchedJobs'])
   },

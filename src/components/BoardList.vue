@@ -1,0 +1,102 @@
+<template>
+  <div class="list-board">
+    <div
+      v-for="item in data"
+      :key="`${item.id}`"
+      class="item-board"
+    >
+      <p class="wrap-title">
+        <a
+          :href="depth1 + item[linkKey]"
+          class="link-board"
+          :target="linkTarget"
+          :title="isNewWindow && 'New Window'"
+        >
+          {{ item.title }}
+          <span class="text-sub comments-count">({{ item.comments_count }})</span>
+        </a>
+      </p>
+      <div class="wrap-info">
+        <router-link :to="`/user/${item.user}`" class="user">
+          <i class="far fa-user"></i> {{ item.user }}
+        </router-link>
+        <p class="text-sub time-ago">{{ item.time_ago }}</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    data: {
+      type: Array,
+      default: () => []
+    },
+    linkKey: {
+      type: String,
+      default: ''
+    },
+    linkTarget: {
+      type: String,
+      default: '_self'
+    },
+    subLink: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    isNewWindow() {
+      return this.linkTarget === '_blank'
+    },
+    depth1() {
+      console.log(this.subLink)
+      const depth1 = this.$route.path.split('/')[1]
+      return this.subLink ? `/${depth1}/` : ''
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.list-board {
+  .item-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+    border-bottom: 1px solid #eeeaea;
+    .link-board {
+      vertical-align: bottom;
+      font-size: 1.2em;
+    }    
+    .wrap-title {
+      flex: 1;
+    }
+    .wrap-info {
+      margin-left: 20px;
+      text-align: right;
+    }
+    .comments-count {
+      font-size: 0.8em;
+      color: var(--main-color);
+    }
+    .time-ago {
+      margin-top: 5px;
+      font-size: 0.85em;
+      color: #999;
+      word-spacing: -0.1em;
+    }
+    .user {
+      color: #666;
+      &:hover {
+        text-decoration: underline;
+      }
+      i {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+</style>

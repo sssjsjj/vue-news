@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <ul>
-      <li
-        v-for="ask in $store.state.askList"
-        :key="`ask${ask.id}`"
-      >
-        <router-link :to="`/ask/${ask.id}`">
-          {{ ask.title }}
-        </router-link>
-      </li>
-    </ul>
-  </div>
+  <board-list 
+    :data="$store.state.askList"
+    :sub-link="true"
+    :linkKey="'id'"
+  />
 </template>
 
 <script>
+import BoardList from '../components/BoardList.vue'
+
 export default {
+  components: {
+    BoardList
+  },
   created() {
     this.$store.dispatch('FETCH_LIST', 'askList')
   }
