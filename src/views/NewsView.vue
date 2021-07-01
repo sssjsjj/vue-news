@@ -39,43 +39,42 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .list-article {
-
-}
-.list-article li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 40px;
-  border-bottom: 1px solid #eeeaea;
-}
-.list-article li .link-article {
-  vertical-align: bottom;
-  font-size: 1.2em;
-}
-.list-article li .wrap-info {
-  display: flex;
-  flex-direction: column;
-  text-align: right;
-}
-.list-article li .comments-count {
-  font-size: 0.8em;
-  color: var(--main-color);
-}
-.list-article li .time-ago {
-  margin-top: 5px;
-  font-size: 0.85em;
-  color: #999;
-  word-spacing: -0.1em;
-}
-.list-article li .user {
-  color: #666;
-}
-.list-article li a.user:hover {
-  text-decoration: underline;
-}
-.list-article li .user i{
-  font-size: 0.8em;
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+    border-bottom: 1px solid #eeeaea;
+    .link-article {
+      vertical-align: bottom;
+      font-size: 1.2em;
+    }    
+    .wrap-info {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+    }
+    .comments-count {
+      font-size: 0.8em;
+      color: var(--main-color);
+    }
+    .time-ago {
+      margin-top: 5px;
+      font-size: 0.85em;
+      color: #999;
+      word-spacing: -0.1em;
+    }
+    .user {
+      color: #666;
+      &:hover {
+        text-decoration: underline;
+      }
+      i {
+        font-size: 0.8em;
+      }
+    }
+  }
 }
 </style>
