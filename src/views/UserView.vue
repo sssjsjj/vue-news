@@ -3,7 +3,6 @@
     <p>id : {{ user.id }}</p>
     <p>karma : {{ user.karma }}</p>
     <p>created : {{ user.created }}</p>
-    <p></p>
   </div>
 </template>
 

@@ -36,7 +36,7 @@ header {
 .gnb a {
   padding: 0 20px;
 }
-.gnb a.router-link-exact-active {
+.gnb a.router-link-active {
   color: var(--main-color);
 }
 </style>

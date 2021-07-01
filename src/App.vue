@@ -20,7 +20,7 @@ export default {
 :root {
   --main-color: tomato
 }
-body, div, section, article, header, footer, ul, ol, dl, li, dt, dd, p, table, tr, td, button, a {
+body, div, section, article, header, footer, ul, ol, dl, li, dt, dd, p, table, tr, td, button, a, h1, h2, h3, h4, h5, h6 {
   vertical-align: top;
   padding: 0;
   margin: 0;
