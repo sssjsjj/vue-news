@@ -4,19 +4,11 @@
       <div class="article-top">
         <h2>{{ item.title }}</h2>
         <p>({{ item.comments_count }})</p>
+        <p>{{ item.time_ago }}</p>
       </div>
       <div class="article-contents" v-html="item.content"></div>
       <div class="article-bottom">
-        <div class="article-info">
-          <p>
-            <router-link :to="`/user/${item.user}`">
-              <i class="far fa-user"></i>
-              {{ item.user }}
-            </router-link>
-          </p>
-          <p>{{ item.time_ago }}</p>
-          <!-- <p>{{ item.points }}</p> -->
-        </div>
+        <user-profile :user-id="item.user" />
       </div>
     </article>
     <section>
@@ -57,7 +49,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import UserProfile from '../components/UserProfile.vue';
+
 export default {
+  components: {
+    UserProfile
+  },
   computed: {
     ...mapGetters({
       item: 'fetchedItem'

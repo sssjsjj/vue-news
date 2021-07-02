@@ -1,0 +1,9 @@
+user.name=정수진
+user.email=sssjsjj@ipartners.co.kr
+color.ui=true
+difftool.sourcetree.cmd='' "$LOCAL" "$REMOTE"
+mergetool.sourcetree.cmd='' 
+mergetool.sourcetree.trustexitcode=true
+gui.encoding=utf-8
+core.autocrlf=true
+core.editor="C:\Users\ins2570\AppData\Local\Programs\Microsoft VS Code\Code.exe" --wait

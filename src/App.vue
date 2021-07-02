@@ -2,7 +2,9 @@
   <div id="app">
     <app-header />
     <!-- router에 해당하는 컴포넌트가 노출. -->
-    <router-view></router-view>
+    <transition name="page">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -13,6 +15,11 @@ export default {
   components: {
     AppHeader
   },
+  data() {
+    return {
+      show: true
+    }
+  }
 }
 </script>
 
@@ -25,7 +32,7 @@ body, div, section, article, header, footer, ul, ol, dl, li, dt, dd, p, table, t
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  color: #333;
+  color: #333;    
   font-size: 14px;
 }
 li, dt, dd {
@@ -43,5 +50,14 @@ a {
 }
 a:hover, button:hover {
   color: var(--main-color);
+}
+
+/* Router Transition */
+.page-enter-active, .page-leave-active {
+  transition: .5s;
+}
+.page-enter, .page-leave-to /* .page-leave-active below version 2.1.8 */ {
+  transform: translateY(5%);
+  opacity: 0;
 }
 </style>

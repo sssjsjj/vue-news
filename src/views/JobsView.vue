@@ -1,24 +1,17 @@
 <template>
-  <board-list 
-    :data="fetchedJobs"
+  <list-item 
+    :list-name="'jobs'"
     :link-key="'url'"
     :link-target="'_blank'"
   />
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import BoardList from '../components/BoardList.vue';
+import ListItem from '../components/ListItem.vue';
 
 export default {
   components: {
-    BoardList
-  },
-  computed: {
-    ...mapGetters(['fetchedJobs'])
-  },
-  created() {
-    this.$store.dispatch('FETCH_LIST', 'jobs')
+    ListItem
   },
 }
 </script>

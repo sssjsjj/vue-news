@@ -1,24 +1,20 @@
 <template>
-  <board-list 
-    :data="$store.state.askList"
+  <list-item 
+    :list-name="'askList'"
     :sub-link="true"
     :linkKey="'id'"
   />
 </template>
 
 <script>
-import BoardList from '../components/BoardList.vue'
+import ListItem from '../components/ListItem.vue'
 
 export default {
   components: {
-    BoardList
+    ListItem
   },
-  created() {
-    this.$store.dispatch('FETCH_LIST', 'askList')
-  }
 }
 </script>
 
 <style>
-
 </style>

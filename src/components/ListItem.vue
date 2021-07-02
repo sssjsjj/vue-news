@@ -1,10 +1,13 @@
 <template>
-  <div class="list-board">
+  <div class="list-item">
     <div
-      v-for="item in data"
+      v-for="item in listItems"
       :key="`${item.id}`"
       class="item-board"
     >
+      <p v-if="item.points" class="points">
+        {{ item.points }}
+      </p>
       <p class="wrap-title">
         <a
           :href="depth1 + item[linkKey]"
@@ -17,9 +20,24 @@
         </a>
       </p>
       <div class="wrap-info">
-        <router-link :to="`/user/${item.user}`" class="user">
-          <i class="far fa-user"></i> {{ item.user }}
+        <router-link
+          v-if="item.user"
+          :to="`/user/${item.user}`"
+          class="name-tag"
+        >
+          <i class="far fa-user"></i>
+          {{ item.user }}
         </router-link>
+        <a
+          v-else-if="item.domain"
+          :href="`https://${item.domain}`"
+          target="_blank"
+          title="New Window"
+          class="name-tag"
+        >
+          <i class="far fa-window-maximize"></i>
+          {{ item.domain }}
+        </a>
         <p class="text-sub time-ago">{{ item.time_ago }}</p>
       </div>
     </div>
@@ -29,38 +47,31 @@
 <script>
 export default {
   props: {
-    data: {
-      type: Array,
-      default: () => []
-    },
-    linkKey: {
-      type: String,
-      default: ''
-    },
-    linkTarget: {
-      type: String,
-      default: '_self'
-    },
-    subLink: {
-      type: Boolean,
-      default: false
-    }
+    listName: String,
+    linkKey: String,
+    linkTarget: String,
+    subLink: Boolean,
   },
   computed: {
+    listItems() {
+      return this.$store.state[this.listName]
+    },
     isNewWindow() {
       return this.linkTarget === '_blank'
     },
     depth1() {
-      console.log(this.subLink)
       const depth1 = this.$route.path.split('/')[1]
       return this.subLink ? `/${depth1}/` : ''
     }
-  }
+  },
+  created() {
+    this.$store.dispatch('FETCH_LIST', this.listName)
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-.list-board {
+.list-item {
   .item-board {
     display: flex;
     justify-content: space-between;
@@ -71,6 +82,14 @@ export default {
       vertical-align: bottom;
       font-size: 1.2em;
     }    
+    .points {
+      min-width: 40px;
+      margin-right: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: var(--main-color);
+      text-align: center;
+    }
     .wrap-title {
       flex: 1;
     }
@@ -88,7 +107,7 @@ export default {
       color: #999;
       word-spacing: -0.1em;
     }
-    .user {
+    .name-tag {
       color: #666;
       &:hover {
         text-decoration: underline;
