@@ -4,11 +4,13 @@
       <div class="article-top">
         <h2>{{ item.title }}</h2>
         <p>({{ item.comments_count }})</p>
-        <p>{{ item.time_ago }}</p>
       </div>
       <div class="article-contents" v-html="item.content"></div>
       <div class="article-bottom">
-        <user-profile :user-id="item.user" />
+        <user-profile>
+          <a slot="userName" :href="`/user/${item.user}`">{{ item.user }}</a>
+          <p slot="created">Posted {{ item.time_ago }}</p>
+        </user-profile>
       </div>
     </article>
     <section>
@@ -18,11 +20,11 @@
         :key="`comment${comment.id}`"
          class="comment"
       >
-        {{ comment.comments_count }}
-        <p>
-          <span><i class="far fa-user"></i>{{ comment.user }}</span>
-          {{ comment.time_ago }}
-        </p>
+        <p>{{ comment.comments_count }}</p>
+        <user-profile>
+          <a slot="userName" :href="`/user/${comment.user}`">{{ comment.user }}</a>
+          <p slot="created">Posted {{ comment.time_ago }}</p>
+        </user-profile>
         <div class="comment" v-html="comment.content"></div>
         <!-- {{ comment.level }} -->
         
@@ -31,12 +33,11 @@
             v-for="subComment in comment.comments"
             :key="`subComment${subComment.id}`"
           >
-            {{ subComment.comments_count }}
-            
-            <p>
-              <span><i class="far fa-user"></i>{{ subComment.user }}</span>
-              {{ subComment.time_ago }}
-            </p>
+            <p>{{ subComment.comments_count }}</p>
+            <user-profile>
+              <a slot="userName" :href="`/user/${subComment.user}`">{{ subComment.user }}</a>
+              <p slot="created">Posted {{ subComment.time_ago }}</p>
+            </user-profile>
             <div v-html="subComment.content"></div>
             <!-- {{ subComment.level }} -->
           </div>

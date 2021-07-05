@@ -12,8 +12,8 @@ const config = {
 function fetchList(type) {
   return axios.get(config.baseUrl + config[type])
 }
-function fetchUser(userName) {
-  return axios.get(`${config.baseUrl}user/${userName}.json`)
+function fetchUser(userId) {
+  return axios.get(`${config.baseUrl}user/${userId}.json`)
 }
 function fetchItem(id) {
   return axios.get(`${config.baseUrl}item/${id}.json`)
