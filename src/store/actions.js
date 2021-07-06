@@ -1,19 +1,22 @@
 import { fetchList, fetchUser, fetchItem } from '../api/index.js'
 
 export default {
-  FETCH_LIST({ commit }, type) {
-    fetchList(type)
-      .then(response => commit(`SET_LIST`, {data: response.data, type}))
-      .catch(error => console.log(error))
+  FETCH_LIST({ commit }, pageName) {
+    fetchList(pageName)
+      .then(({ data }) => {
+        commit(`SET_DATA`, {data, type: 'list'})
+        return data
+      })
+      .catch(error => console.log('FETCH_LIST', error))
   },
   FETCH_USER({ commit }, userName) {
     fetchUser(userName)
-      .then(response => commit(`SET_LIST`, {data: response.data, type: 'user'}))
-      .catch(error => console.log(error))
+      .then(({ data }) => commit(`SET_DATA`, {data, type: 'user'}))
+      .catch(error => console.log('FETCH_USER', error))
   },
   FETCH_ITEM({ commit }, id) {
     fetchItem(id)
-      .then(response => commit(`SET_LIST`, {data: response.data, type: 'item'}))
+      .then(({ data }) => commit(`SET_DATA`, {data, type: 'item'}))
       .catch(error => console.log(error))
   }
 }

@@ -63,7 +63,7 @@ export default {
   },
   created() {
     this.$store.dispatch('FETCH_ITEM', this.$route.params.item)
-  }
+  },
 }
 </script>
 

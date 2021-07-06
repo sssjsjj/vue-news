@@ -10,7 +10,7 @@
       </p>
       <p class="wrap-title">
         <a
-          :href="depth1 + item[linkKey]"
+          :href="isOutLink ? item.url : $route.name+'/'+item.id"
           class="link-board"
           :target="linkTarget"
           :title="isNewWindow && 'New Window'"
@@ -45,28 +45,29 @@
 </template>
 
 <script>
+
 export default {
-  props: {
-    listName: String,
-    linkKey: String,
-    linkTarget: String,
-    subLink: Boolean,
+  data() {
+    return {
+    }
   },
   computed: {
     listItems() {
-      return this.$store.state[this.listName]
+      return this.$store.state.list
     },
     isNewWindow() {
       return this.linkTarget === '_blank'
     },
-    depth1() {
-      const depth1 = this.$route.path.split('/')[1]
-      return this.subLink ? `/${depth1}/` : ''
+    isOutLink() {
+      const outLinkPages = ['news', 'jobs']
+      return outLinkPages.includes(this.$route.name) ? true : false
+    },
+    linkTarget() {
+      return this.isOutLink ? '_blank' : '_self'
     }
   },
-  created() {
-    this.$store.dispatch('FETCH_LIST', this.listName)
-  },
+  methods: {
+  }
 }
 </script>
 
