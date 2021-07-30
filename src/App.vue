@@ -73,10 +73,12 @@ a:hover, button:hover {
 }
 
 /* Router Transition */
-.page-enter-active, .page-leave-active {
+.page-enter-active,
+.page-leave-active {
   transition: .5s;
 }
-.page-enter, .page-leave-to /* .page-leave-active below version 2.1.8 */ {
+.page-enter,
+.page-leave-to /* .page-leave-active below version 2.1.8 */ {
   transform: translateY(5%);
   opacity: 0;
 }

@@ -14,7 +14,8 @@ export default {
   components: {
     ListItem
   },
-  // mixins: [ListMixin] - mixin예제
+  // mixin예제
+  // mixins: [ListMixin] 
 }
 </script>
 

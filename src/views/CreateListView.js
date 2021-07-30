@@ -1,3 +1,4 @@
+// High Order Component
 import ListView from './ListView.vue';
 import bus from '../utils/bus.js'
 

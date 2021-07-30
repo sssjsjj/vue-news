@@ -15,17 +15,17 @@ export const router = new VueRouter({
     },
     {
       path: '/news',
-      component: CreateListView('newsView'),
+      component: CreateListView('NewsView'),
       name: 'news'
     },
     {
       path: '/ask',
-      component: CreateListView('askView'),
+      component: CreateListView('AskView'),
       name: 'ask'
     },
     {
       path: '/jobs',
-      component: CreateListView('jobsView'),
+      component: CreateListView('JobsView'),
       name: 'jobs'
     },
     {
